@@ -93,6 +93,6 @@ should be replaced by something like this one:
    };
 </pre>
 
-and you have to add to your plugin a public method that acts as proxy for methods, i.e. accepting method name as argument.
+and you have to add to your plugin a public method, sat <code>method()</code> that acts as proxy for methods, i.e. accepting method name as argument and still, your chain would be: <code>$(element).myPlugin.method('get_a')</code>.
 
 Have fun!
