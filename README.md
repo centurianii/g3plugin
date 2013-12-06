@@ -60,13 +60,39 @@ See: http://jsfiddle.net/centurianii/s4J2H/1/
 
 Issues
 ======
-1. Still code duplicance?
+1. Still code duplicance?<br />
 Even this demo is not cleared from ill behaviours: do you see a comment <code>MVC initial state</code> at file '<i>test-plugin.html</i>'?
 It contains variable <code>var defaults = {...}</code> and you wonder: why should every node keep in it's data a common object? Think again! Yes, you can move it out of scope like <code>$$.A</code>. Now you are getting it...
 
-2. Where is plugin chainability?
-I see, instead <code>$(element).data('myPlugin').get_a()</code> something like <code>$(element).myPlugin('get_a')</code>.
+2. Where is plugin chainability?<br />
+I see, instead <code>$(element).data('myPlugin').get_a()</code> you want something like <code>$(element).myPlugin('get_a')</code>.
+Think again, we decided to preserve jQuery chainability and not plugin, one is against the other. If you decide to break jQuery then this code:
 
+<pre>
+//extend jquery
+   $.fn.myPlugin = function(options) {
+      return this.each(function() {
+         var plugin = myPluginFactory(this, options);
+         $(this).data(plugin.pluginName, plugin);
+      });
+   };
+</pre>
 
+should be replaced by something like this one:
+
+<pre>
+//extend jquery
+   $.fn.myPlugin = function(options) {
+      var first;
+      this.each(function(ndx) {
+         var plugin = myPluginFactory(this, options);
+         $(this).data(plugin.pluginName, plugin);
+         if(ndx === 0) first = plugin;
+      });
+      return first;
+   };
+</pre>
+
+and you have to add to your plugin a public method that acts as proxy for methods, i.e. accepting method name as argument.
 
 Have fun!
