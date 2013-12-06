@@ -56,4 +56,6 @@ This plugin boilerplate answers all these problems by combining two worlds:
 - a jQuery plugin construction and
 - the ability to use an <b>OO</b> class library to handle inheritance, object cloning etc. more easily!
 
+See: http://jsfiddle.net/centurianii/s4J2H/1/
+
 Have fun!
