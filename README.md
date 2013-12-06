@@ -20,10 +20,10 @@ But as we go deeper our questions are more on engineering design concepts:
 
 This plugin approach works well and can confronts difficulties like in the following scenario:
 
-we have nodes A, B and C that store an object reference into their <code>data</code> property like in the jQuery approach.
+<i>we have nodes A, B and C that store an object reference into their <code>data</code> property like in the jQuery approach.
 <ul><li>Some of them store info in public <b>and</b> private accessible <b>internal member-objects</b>,</li>
 <li>some classes of these objects are connected with <b>inheritance</b>,</li>
-<li>all of these nodes also need some private <b>and</b> public <b>singletons</b> to work best.</li></ul> 
+<li>all of these nodes also need some private <b>and</b> public <b>singletons</b> to work best.</li></ul></i>
 
 What would we do in such situation?
 See the drawning:
