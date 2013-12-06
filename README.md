@@ -58,4 +58,9 @@ This plugin boilerplate answers all these problems by combining two worlds:
 
 See: http://jsfiddle.net/centurianii/s4J2H/1/
 
+Issues
+======
+Even this demo is not cleared from illbehaviours: do you see a comment <code>MVC initial state</code>?
+It contains variable <code>var defaults = {...}</code> and you wonder: why should every node keep in it's data a common object? Think again! Yes, you can move it out of scope like <code>$$.A</code>. Now you are getting it...
+
 Have fun!
