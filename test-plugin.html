@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>
+<meta charset=utf-8>
+<title>Tests a plugin boilerplate</title>
+
+</head>
+<body>
+   <ol id="refs">
+      <li><a href="http://www.google.com">google</a></li>
+      <li><a href="http://stackoverflow.com/questions/5980194/jquery-plugin-template-best-practice-convention-performance-and-memory-impac?rq=1">plugin template best practice</a></li>
+      <li><a href="http://stackoverflow.com/questions/7127600/which-jquery-plugin-design-pattern-should-i-use">which jquery plugin design pattern should i use</a></li>
+   </ol>
+   <button type="button">Click Me!</button> 
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+   <script>window.jQuery || document.write('<script src="jquery-1.10.2.js"><\/script>')</script>
+<script>
+/*
+ * Class library
+ * =============
+ */
+(function($$, $, window, document, undefined){
+   //a class definition
+   $$.A = function(href){
+      this.href = href;
+   };
+   //a singleton
+   $$.B = (function(){
+      var obj;
+      function init(){
+         obj = {msg: 'hello!', toString: function(){return this.msg;}};
+         return obj;
+      }
+      return {
+         getInstance: function(){
+            if(obj)
+               return obj;
+            else
+               return init();
+         }
+      };
+   })();
+}(window.$$ = window.$$ || {}, jQuery, window, document));
+
+/*
+ * myPluginFactory
+ * ===============
+ */
+;(function($, window, document, undefined){
+   var myPluginFactory = function(elem, options){
+      /* *************** */
+      /* Private members */
+      /* *************** */
+      /* 
+       * MVC initial state
+       * -----------------
+       * the initial data state diagram
+       */
+      var defaults = {
+         // Model
+         a: null, //<== builds on an external class!
+         b: null, //<== calls an external singleton!
+         // View
+         tag: 'div',
+         // Controller
+         pluginStart: 'myPluginStart',
+         pluginEnd: 'myPluginEnd'
+      },
+      /*
+       * MVC transient state
+       * -------------------
+       * the transient data state diagram
+       */
+      modelState = {
+         options: null //collects data from user + default
+      },
+      viewState = {
+         container: null, //outermost container element
+         $container: null //the jquery object of 'container'
+      },
+      controllerState = {
+         index: null, //current index
+         object: null, //current object
+         paused: false, //paused on hover
+         animationStack: [] //stores animation function ids returned from setTimeout()
+      };
+      /*
+       * MVC functions
+       * -------------
+       * the functional diagram
+       */
+      function modeler(elem){
+         modelState.options.a = new $$.A(elem.href);
+         modelState.options.b = $$.B.getInstance();
+      };
+      function controller(){
+         viewState.$container.
+         mouseenter(function(event){
+            $('<span> '+this.href+'</span>').
+            addClass('linkhref').
+            insertAfter(this);
+         }).
+         mouseleave(function(event){
+            $('.linkhref').remove();
+         });
+      };
+      /*
+       * Init this animal!
+       */
+      function init(elem, options) {
+         viewState.container = elem;
+         viewState.$container = $(elem);
+         modelState.options = $.extend({}, defaults, options);
+         modeler(elem);
+         controller();
+      };
+      init(elem, options);
+      /* ***************
+      * public members
+      * ***************/
+      return {
+         pluginName: 'myPlugin',
+         init: function(elem, options) {
+            init(elem, options);
+         },
+         get_a: function(){return modelState.options.a.href;},
+         get_b: function(){return modelState.options.b.toString();}
+      };
+   };
+   
+   //extend jquery
+   $.fn.myPlugin = function(options) {
+      return this.each(function() {
+         var plugin = myPluginFactory(this, options);
+         $(this).data(plugin.pluginName, plugin);
+      });
+   };
+}(jQuery, window, document));
+
+//let's play!
+$(function() {
+   var $anchors = $("#refs a").myPlugin();
+   //search private store: var a for every <a>
+   $('button').on('click', function(){
+      $anchors.each(function(ndx){
+         alert('at '+ndx+': a = '+$(this).data('myPlugin').get_a()+', b = '+$(this).data('myPlugin').get_b());
+      })
+   });
+});
+</script>
+</body>
+</html>
