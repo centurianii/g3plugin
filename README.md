@@ -18,7 +18,7 @@ But as we go deeper our questions are more on engineering design concepts:
 - Should it be expandable and how?
 - Should be independable of libraries and how?
 
-This plugin approach works well and can confronts difficulties like in the following scenario:
+This plugin approach works well and can confronts difficulties like in the following scenario (see: http://stackoverflow.com/questions/7127600/which-jquery-plugin-design-pattern-should-i-use):
 
 <blockquote cite="http://stackoverflow.com/questions/7127600/which-jquery-plugin-design-pattern-should-i-use"><i>we have nodes A, B and C that store an object reference into their <code>data</code> property like in the jQuery approach.
 <ul><li>Some of them store info in public <b>and</b> private accessible <b>internal member-objects</b>,</li>
