@@ -60,7 +60,13 @@ See: http://jsfiddle.net/centurianii/s4J2H/1/
 
 Issues
 ======
+1. Still code duplicance?
 Even this demo is not cleared from ill behaviours: do you see a comment <code>MVC initial state</code> at file '<i>test-plugin.html</i>'?
 It contains variable <code>var defaults = {...}</code> and you wonder: why should every node keep in it's data a common object? Think again! Yes, you can move it out of scope like <code>$$.A</code>. Now you are getting it...
+
+2. Where is plugin chainability?
+I see, instead <code>$(element).data('myPlugin').get_a()</code> something like <code>$(element).myPlugin('get_a')</code>.
+
+
 
 Have fun!
