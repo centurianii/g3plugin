@@ -97,14 +97,14 @@ should be replaced by something like this one:
 and you have to add to your plugin a public method, say <code>method()</code> that acts as proxy for methods, i.e. accepting method name as argument but still, your chain would be: <code>$(element).myPlugin.method('get_a')</code> and only applicable to the first member of the node set.
 </li>
 <li>Why not using <code>$.myClass = {definition goes here...}</code>?<br />
-Just change perspective: <code>$</code> is a function object, <code>$.myClass</code> adds in terms of OO design a <b>static</b> member, common between successive calls of jQuery or say it briefly you are creating your own class here reinventing the wheel!
+Just change perspective: <code>$</code> is a function object, <code>$.myClass</code> adds in terms of OO design a <b>static</b> member, common between successive calls of jQuery or say it briefly you are reinventing the wheel by creating your own class here without all the tools that an OO approach would give you!
 </li>
 </ol>
 
 Update
 ======
-This approach moved from self-invoking function where inner defined functions behave as singulars to closures of a function where everything is repeated in memory for every function call.
-Rephrasing the above leads us to functions defined in prototype object versus functions defined inline with the constructor. The first lacks private data the second lacks once defined functions and the winner is ... none.<br />
+This approach moved from a self-invoking function where the inner defined functions behave as singulars to function closures where everything is repeated in memory for every function call.
+Rephrasing the above leads us to functions defined in the prototype versus functions defined inline of a constructor. The first lacks private data and the second one lacks functions defined once and the winner is ... none.<br />
 <b>Create your object using official well-behaved classes and pass it to jQuery for data storage.</b>
 
 Have fun!
