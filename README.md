@@ -60,11 +60,12 @@ See: http://jsfiddle.net/centurianii/s4J2H/1/
 
 Issues
 ======
-1. Still code duplicance?<br />
+<ol>
+<li>Still code duplicance?<br />
 Even this demo is not cleared from ill behaviours: do you see a comment <code>MVC initial state</code> at file '<i>test-plugin.html</i>'?
 It contains variable <code>var defaults = {...}</code> and you wonder: why should every node keep in it's data a common object? Think again! Yes, you can move it out of scope like <code>$$.A</code> as long as it doesn't contain node's specific data (here id does for demonstration purposes). Now you are getting it...
-
-2. Where is plugin chainability?<br />
+</li>
+<li>Where is plugin chainability?<br />
 I see, instead <code>$(element).data('myPlugin').get_a()</code> you want something like <code>$(element).myPlugin('get_a')</code>.
 Think again, we decided to preserve jQuery chainability and not plugin, one is against the other. If you decide to break jQuery then this code:
 
@@ -94,9 +95,11 @@ should be replaced by something like this one:
 </pre>
 
 and you have to add to your plugin a public method, say <code>method()</code> that acts as proxy for methods, i.e. accepting method name as argument but still, your chain would be: <code>$(element).myPlugin.method('get_a')</code> and only applicable to the first member of the node set.
-
-3. Why not using <code>$.myClass = {definition goes here...}</code>?<br />
+</li>
+<li>Why not using <code>$.myClass = {definition goes here...}</code>?<br />
 Just change perspective: <code>$</code> is a function object, <code>$.myClass</code> adds in terms of OO design a <b>static</b> member, common between successive calls of jQuery or say it briefly you are creating your own class here reinventing the wheel!
+</li>
+</ol>
 
 Update
 ======
