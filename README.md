@@ -95,7 +95,7 @@ should be replaced by something like this one:
 
 and you have to add to your plugin a public method, say <code>method()</code> that acts as proxy for methods, i.e. accepting method name as argument but still, your chain would be: <code>$(element).myPlugin.method('get_a')</code> and only applicable to the first member of the node set.
 
- 3. Why not using <code>$.myClass = {definition goes here...}</code>?<br />
+3. Why not using <code>$.myClass = {definition goes here...}</code>?<br />
 Just change perspective: <code>$</code> is a function object, <code>$.myClass</code> adds in terms of OO design a <b>static</b> member, common between successive calls of jQuery or say it briefly you are creating your own class here reinventing the wheel!
 
 Update
