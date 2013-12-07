@@ -103,7 +103,7 @@ Just change perspective: <code>$</code> is a function object, <code>$.myClass</c
 
 Update
 ======
-This approach moved from a self-invoking function where the inner defined functions behave as singulars to function closures where everything is repeated in memory for every function call.
+This approach moved from a <b>self-invoking function</b> where the inner defined functions behave as singulars to <b>function closures</b> where everything is repeated in memory for every function call.
 Rephrasing the above leads us to functions defined in the prototype versus functions defined inline of a constructor. The first lacks private data and the second one lacks functions defined once and the winner is ... none.<br />
 <b>Create your object using official well-behaved classes and pass it to jQuery for data storage.</b>
 
