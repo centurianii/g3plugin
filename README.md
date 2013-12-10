@@ -107,6 +107,6 @@ Update
 ======
 This approach tranformed the <a href="http://www.yuiblog.com/blog/2007/06/12/module-pattern/">module pattern</a> from a <b>self-invoked function</b> where the inner defined data behave as singletons to a <b>function</b> where every call reserves new memory resulting in duplicates of inner data one for every returned object.
 Rephrasing the above leads us to a similar situation where functions are defined in the prototype versus functions that are defined inline of a constructor in terms of repetition. The first lacks repetition of data and the second one lacks unique, cross-object data and the winner is ... none.<br />
-<blockquote><b>Move your static object members from the instance ones in external classes/singletons and then, reference them from a plugin like this one using a class factory to build objects ready for storage.</b></blockquote>
+<blockquote><b>Move your static object members from the instance ones into external classes/singletons and then, reference them from a plugin like this one using a class factory that builds objects ready for storage.</b></blockquote>
 
 Have fun!
