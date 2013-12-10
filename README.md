@@ -20,29 +20,31 @@ But as we go deeper our questions are more on engineering design concepts:
 
 This plugin approach works well and can confronts difficulties like in the following scenario (see: http://stackoverflow.com/questions/7127600/which-jquery-plugin-design-pattern-should-i-use):
 
-<blockquote cite="http://stackoverflow.com/questions/7127600/which-jquery-plugin-design-pattern-should-i-use"><i>we have nodes A, B and C that store an object reference into their <code>data</code> property like in the jQuery approach.
-<ul><li>Some of them store info in public <b>and</b> private accessible <b>internal member-objects</b>,</li>
-<li>some classes of these objects are connected with <b>inheritance</b>,</li>
-<li>all of these nodes also need some private <b>and</b> public <b>singletons</b> to work best.</li></ul></i></blockquote>
+<blockquote cite="http://stackoverflow.com/questions/7127600/which-jquery-plugin-design-pattern-should-i-use"><i>we have nodes X, Y and Z that store an object reference into their <code>data</code> property like in the jQuery approach. Our objects operate on nodes.
+<ul><li>Some of these objects store info in public <b>and/or</b> private accessible <b>internal member-objects</b>,</li>
+<li>some classes of the member-objects might be connected with <b>inheritance</b>,</li>
+<li>some of our member-objects might be private <b>and/or</b> public <b>singletons</b>.</li></ul></i></blockquote>
 
 What would we do in such situation?
 See the drawning:
 
 <pre>
-    classes : |  A        B         C
-    ------------------case 1----------
-    members   |  |        |         |
-      of      |  v        v         v
+    classes : |  A           B         C
+    ----------------------case 1----------
+    members   |  |           |         |
+      of      |  v           v         v
     an object | var a=new A, b=new B,  c=new C
       at      |     B extends A
     node X :  |  a, b, c : private
-    ------------------case 2---------
-    members   |  |        |         |
-      of      |  v        v         v
+    -----------------------case 2---------
+    members   |  |           |         |
+      of      |  v           v         v
     an object | var aa=new A, bb=new B, cc=new C
       at      |     BB extends AA
     node Y :  |  aa, bb, cc : public
-    -------------------case 3--------
+    -----------------------case 3--------
+    Singletons|  D, E
+    -------------------------------------
     members   |  |        |         |
       of      |  v        v         v
     an object | var d= D.getInstance() (private),
