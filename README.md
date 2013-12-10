@@ -65,7 +65,7 @@ Issues
 <ol>
 <li>Still code duplicance?<br />
 Even this demo is not cleared from ill behaviours: do you see a comment <code>MVC initial state</code> at file '<i>test-plugin.html</i>'?
-It contains variable <code>var defaults = {...}</code> and you wonder: why should every node keep in it's data a common object? Think again! Yes, you can move it out of scope like <code>$$.A</code> as long as it doesn't contain node's specific data (here id does for demonstration purposes). Now you are getting it...
+It contains variable <code>var defaults = {...}</code> and you wonder: why should every node keep a seperate <code>defaults</code> variable? Think again! Yes, you can move it out of scope like <code>$$.A</code> as long as it doesn't contain node's specific data (here id does for demonstration purposes). Now you are getting it...
 </li>
 <li>Where is plugin chainability?<br />
 I see, instead <code>$(element).data('myPlugin').get_a()</code> you want something like <code>$(element).myPlugin('get_a')</code>.
