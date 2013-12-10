@@ -45,11 +45,11 @@ See the drawning:
     -----------------------case 3--------
     Singletons|  D, E
     -------------------------------------
-    members   |  |        |         |
-      of      |  v        v         v
-    an object | var d= D.getInstance() (private),
-      at      |     e= E.getInstance() (public)
-    node Z :  |     D, E : Singletons
+    members   |
+      of      | var d= D.getInstance(),
+    an object |     e= E.getInstance()
+      at      | d: private,
+    node Z :  | e : public
 </pre>
 
 This plugin boilerplate answers all these problems by combining two worlds:
