@@ -31,25 +31,25 @@ See the drawning:
 <pre>
     classes : |  A           B         C
     ----------------------case 1----------
-    members   |  |           |         |
-      of      |  v           v         v
-    an object | var a=new A, b=new B,  c=new C
-      at      |     B extends A
-    node X :  |  a, b, c : private
+    members     |  |           |         |
+      of        |  v           v         v
+    an object   | var a=new A, b=new B,  c=new C
+      at        |     B extends A
+    node X :    |  a, b, c : private
     -----------------------case 2---------
-    members   |  |           |         |
-      of      |  v           v         v
-    an object | var aa=new A, bb=new B, cc=new C
-      at      |     BB extends AA
-    node Y :  |  aa, bb, cc : public
+    members     |  |           |         |
+      of        |  v           v         v
+    an object   | var aa=new A, bb=new B, cc=new C
+      at        |     BB extends AA
+    node Y :    |  aa, bb, cc : public
     -----------------------case 3--------
-    Singletons|  D, E
+    Singletons: |  D, E
     -------------------------------------
-    members   |
-      of      | var d= D.getInstance(),
-    an object |     e= E.getInstance()
-      at      | d: private,
-    node Z :  | e : public
+    members     | var d= D.getInstance(),
+      of        |     e= E.getInstance()
+    an object   |
+      at        | d: private,
+    node Z :    | e : public
 </pre>
 
 This plugin boilerplate answers all these problems by combining two worlds:
@@ -99,7 +99,7 @@ should be replaced by something like this one:
 and you have to add to your plugin a public method, say <code>method()</code> that acts as proxy for methods, i.e. accepting method name as argument but still, your chain would be: <code>$(element).myPlugin.method('get_a')</code> and only applicable to the first member of the node set.
 </li>
 <li>Why not using <code>$.myClass = {definition goes here...}</code>?<br />
-Just change perspective: <code>$</code> is a function object, <code>$.myClass</code> adds in terms of OO design a <b>static</b> member, common between successive calls of jQuery or say it briefly you are reinventing the wheel by creating your own class here without all the tools that an OO approach would give you!
+Just change perspective: <code>$</code> is a function object, <code>$.myClass</code> adds in terms of OO design a <b>static</b> member, commonly accessible between different calls of jQuery or say it briefly you are moving <b>your</b> namespace under jQuery's <code>$</code>. It's a matter of preference here!
 </li>
 </ol>
 
