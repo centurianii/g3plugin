@@ -1,4 +1,4 @@
-jsplugin
+g3plugin
 ========
 
 A modular javascript plugin boilerplate
